@@ -14,5 +14,12 @@
             this.PastorID = pastorID;
             this.Link = link;
         }
+        public Culto()
+        {
+            this.Id = -1;
+            this.Data = DateTime.MinValue;
+            this.PastorID = -1;
+            this.Link = "placeholder";
+        }
     }
 }
