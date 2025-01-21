@@ -3,9 +3,9 @@
     public class Culto
     {
         public int Id { get; set; }
-        public DateTime Data;
-        public int PastorID;
-        public string Link;
+        public DateTime Data { get; set; }
+        public int PastorID { get; set; }
+        public string Link {  get; set; }
         
         public Culto(int id, DateTime data, int pastorID, string link)
         {
