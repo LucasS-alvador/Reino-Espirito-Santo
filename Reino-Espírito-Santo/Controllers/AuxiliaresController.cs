@@ -8,16 +8,18 @@ namespace Reino_Espírito_Santo.Controllers
     {
         static List<AuxiliarModel> _auxiliares = new List<AuxiliarModel>()
         {
-            new AuxiliarModel() {Id = 1, Nome = "Test", Funcao = "presbitero"},
-            new AuxiliarModel() {Id = 2, Nome = "Ana", Funcao = "diaconisa"},
-            new AuxiliarModel() {Id = 3, Nome = "João", Funcao = "mestre"},
-            new AuxiliarModel() {Id = 4, Nome = "Carlos", Funcao = "pastor"},
-            new AuxiliarModel() {Id = 5, Nome = "Maria", Funcao = "evangelista"},
-            new AuxiliarModel() {Id = 6, Nome = "Roberto", Funcao = "presbitero"},
-            new AuxiliarModel() {Id = 7, Nome = "Patricia", Funcao = "diaconisa"},
-            new AuxiliarModel() {Id = 8, Nome = "Eduardo", Funcao = "mestre"},
-            new AuxiliarModel() {Id = 9, Nome = "Juliana", Funcao = "pastor"},
-            new AuxiliarModel() {Id = 10, Nome = "Felipe", Funcao = "evangelista"}
+            new AuxiliarModel() {Id = 1, Nome = "Test", Funcao = "presbitero" , Telefone = "47 9982-3883"},
+            new AuxiliarModel() { Id = 1, Nome = "Test", Funcao = "presbitero", Telefone = "47 9982-3883" },
+            new AuxiliarModel() { Id = 2, Nome = "Ana Souza", Funcao = "diaconisa", Telefone = "47 9876-5432" },
+            new AuxiliarModel() { Id = 3, Nome = "Carlos Pereira", Funcao = "pastor", Telefone = "47 9678-1122" },
+            new AuxiliarModel() { Id = 4, Nome = "Maria Oliveira", Funcao = "auxiliar", Telefone = "47 9988-1122" },
+            new AuxiliarModel() { Id = 5, Nome = "João Silva", Funcao = "presbitero", Telefone = "47 9678-2233" },
+            new AuxiliarModel() { Id = 6, Nome = "Luciana Martins", Funcao = "diaconisa", Telefone = "47 9555-3344" },
+            new AuxiliarModel() { Id = 7, Nome = "Paulo Santos", Funcao = "pastor", Telefone = "47 9444-5566" },
+            new AuxiliarModel() { Id = 8, Nome = "Fernanda Costa", Funcao = "auxiliar", Telefone = "47 9222-7788" },
+            new AuxiliarModel() { Id = 9, Nome = "Ricardo Almeida", Funcao = "presbitero", Telefone = "47 9333-8899" },
+            new AuxiliarModel() { Id = 10, Nome = "Patrícia Lima", Funcao = "diaconisa", Telefone = "47 9111-1000" },
+
         };
 
         public IActionResult Index()
@@ -37,6 +39,7 @@ namespace Reino_Espírito_Santo.Controllers
 
             auxiliar.Nome = model.Nome;
             auxiliar.Funcao = model.Funcao;
+            auxiliar.Telefone = model.Telefone;
 
             return RedirectToAction("Index");
         }
