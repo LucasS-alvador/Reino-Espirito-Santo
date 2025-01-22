@@ -17,5 +17,18 @@ namespace Reino_Espírito_Santo.Controllers
             listaDeCultos.cultos = standardCultos;
             return View(listaDeCultos);
         }
+
+        public IActionResult Criacao()
+        {
+            var highestId = standardCultos.LastOrDefault().Id;
+            Culto c = new Culto(highestId + 1, new DateTime(2000, 1, 1, 1, 1, 1), 3, "placeholder");
+            return View(c);
+        }
+
+        [HttpPost] public IActionResult Criar(Culto culto)
+        {
+            standardCultos.Add(culto);
+            return RedirectToAction("Index");
+        }
     }
 }
