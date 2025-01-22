@@ -6,7 +6,7 @@ namespace Reino_Espírito_Santo.Controllers
 {
     public class AuxiliaresController : Controller
     {
-        static List<AuxiliarModel> _auxiliares = new List<AuxiliarModel>()
+        public static List<AuxiliarModel> auxiliares = new List<AuxiliarModel>()
         {
             new AuxiliarModel() {Id = 1, Nome = "Test", Funcao = "presbitero" , Telefone = "47 9982-3883"},
             new AuxiliarModel() { Id = 1, Nome = "Test", Funcao = "presbitero", Telefone = "47 9982-3883" },
