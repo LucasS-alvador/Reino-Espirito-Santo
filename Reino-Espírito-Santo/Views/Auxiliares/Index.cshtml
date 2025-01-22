@@ -1,0 +1,30 @@
+﻿@using Reino_Espírito_Santo.Models.Auxiliares
+@model AuxiliaresModel
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Função</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var auxiliar in Model.Auxiliares)
+        {
+            <tr>
+                <td>@auxiliar.Id</td>
+                <td>@auxiliar.Nome</td>
+                <td>@auxiliar.Funcao</td>
+                <td>
+                    <a type="button" class="btn btn-dark" asp-area="" asp-controller="Auxiliares" asp-action="Record" asp-route-id="@auxiliar.Id">Edit</a>
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a href="@Url.Action("Add", "Auxiliares")" class="btn btn-success">Adicionar Novo Auxiliar</a>
+</div>
