@@ -13,8 +13,9 @@ namespace Reino_Espírito_Santo.Controllers
         };
         public IActionResult Index()
         {
-            ListaDeCultos listaDeCultos = new ListaDeCultos();
+            var listaDeCultos = new ListaDeCultosEAuxiliares();
             listaDeCultos.cultos = standardCultos;
+            listaDeCultos.auxiliares = AuxiliaresController.auxiliares;
             return View(listaDeCultos);
         }
 
