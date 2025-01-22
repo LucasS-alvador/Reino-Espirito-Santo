@@ -24,18 +24,18 @@ namespace Reino_Espírito_Santo.Controllers
 
         public IActionResult Index()
         {
-            var model = new AuxiliaresModel() { Auxiliares = _auxiliares };
+            var model = new AuxiliaresModel() { Auxiliares = auxiliares };
             return View(model);
         }
         public IActionResult Record(long id)
         {
-            var auxiliaratual = _auxiliares.FirstOrDefault(auxiliar => auxiliar.Id == id);
+            var auxiliaratual = auxiliares.FirstOrDefault(auxiliar => auxiliar.Id == id);
             return View(auxiliaratual);
         }
         [HttpPost]
         public IActionResult Save(AuxiliarModel model)
         {
-            var auxiliar = _auxiliares.FirstOrDefault(i => i.Id == model.Id);
+            var auxiliar = auxiliares.FirstOrDefault(i => i.Id == model.Id);
 
             auxiliar.Nome = model.Nome;
             auxiliar.Funcao = model.Funcao;
@@ -52,9 +52,9 @@ namespace Reino_Espírito_Santo.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Id = _auxiliares.Max(a => a.Id) + 1;
+                model.Id = auxiliares.Max(a => a.Id) + 1;
 
-                _auxiliares.Add(model);
+                auxiliares.Add(model);
 
                 return RedirectToAction("Index");
             }
