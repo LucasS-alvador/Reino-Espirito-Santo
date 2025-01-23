@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Reino_Espírito_Santo</title>
+    <title>@ViewData["Title"]Reino Espírito Santo</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1051/1051474.png" type="image/x-icon">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Reino_Espírito_Santo.styles.css" asp-append-version="true" />
@@ -19,7 +20,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Reino_Espírito_Santo</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Reino Espírito Santo</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -30,7 +31,13 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cultos" asp-action="Index">Cultos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Auxiliares" asp-action="Index">Auxiliares</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Missionarios" asp-action="Index">Missionarios</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Dizimos" asp-action="index">Dizimos</a>
@@ -48,7 +55,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - Reino_Espírito_Santo - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2025 - Reino Espírito Santo - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

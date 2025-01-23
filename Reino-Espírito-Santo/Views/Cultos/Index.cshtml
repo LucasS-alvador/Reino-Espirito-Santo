@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ListaDeCultosEAuxiliares
+
+<table class="table table-striped">
+    <thead>
+		<tr>
+			<th>Id</th>
+			<th>Data</th>
+			<th>Pastor</th>
+			<th>Gravação  do Culto</th>
+		</tr>
+    </thead>
+    <tbody>
+	@foreach(var culto in Model.cultos)
+	{
+		<tr>
+			<td>@culto.Id</td>
+			<td>@culto.Data</td>
+			<td>@(Model.auxiliares.Any(a => a.Id == culto.PastorID)? Model.auxiliares.FirstOrDefault(a => a.Id == culto.PastorID)?.Nome : "Erro")</td>
+			<td>@("https://"+culto.Link)</td>
+			@*<td><a type="button" class="btn btn-warning" asp-area="" asp-controller="Jogos" asp-action="EditarJogo" asp-route-id="@j.ID">Editar Jogo</a></td>*@
+		</tr>
+	}
+	<tr>
+		<td><a type="button" class="btn btn-warning" asp-area="" asp-controller="Cultos" asp-action="Criacao">Registrar Culto</a></td>
+	</tr>
+    </tbody>
+</table>
