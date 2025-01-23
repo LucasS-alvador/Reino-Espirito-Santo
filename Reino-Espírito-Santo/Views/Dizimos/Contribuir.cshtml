@@ -1,0 +1,25 @@
+﻿@using Reino_Espírito_Santo.Models.Dizimo
+@model DizimoModel
+
+<style>
+    button {
+        margin-top: 10px;
+    }
+</style>
+
+<div>
+    <h3 class="text-center">Dízime</h3>
+    <form asp-controller="Dizimos" asp-action="Contribuir" method="post">
+        <div class="row justify-content-center">
+            
+            <div class="col-md-5 form-group">
+                <label></label>
+                <input type="number" id="nome" class="form-control" asp-for="Adicionado" />
+            </div>
+        </div>
+       
+        <div class="form-group text-center" style="margin: 10px;">
+            <button type="submit" class="btn btn-primary btn-lg text-center">Ofertar</button>
+        </div>
+    </form>
+</div>

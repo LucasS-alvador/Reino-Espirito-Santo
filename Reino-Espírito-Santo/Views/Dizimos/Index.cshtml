@@ -1,0 +1,20 @@
+﻿@using Reino_Espírito_Santo.Models.Dizimo
+@model DizimoModel
+
+<div class="text-center">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Adicionado</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Adicionado</td>
+                <td>@Model.Total</td>
+            </tr>
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-primary btn-lg text-center" asp-controller="Dizimos" asp-action="Contribuir">Ofertar</a>
+</div>

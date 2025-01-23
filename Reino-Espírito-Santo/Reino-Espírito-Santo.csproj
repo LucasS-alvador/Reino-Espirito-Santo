@@ -7,4 +7,8 @@
     <RootNamespace>Reino_Espírito_Santo</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="Views\Dizimos\Record.cshtml" />
+  </ItemGroup>
+
 </Project>
