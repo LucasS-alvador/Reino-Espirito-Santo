@@ -19,7 +19,13 @@ namespace Reino_Espírito_Santo.Controllers
             var pastores = new List<AuxiliarModel>();
             foreach (var a in AuxiliaresController.auxiliares)
             {
-                if (a.Funcao.ToUpper() == "PASTOR")
+                if (a.Funcao == null)
+                {
+                    continue;
+                }
+                var func = a.Funcao.ToUpper();
+                
+                if(func == "PASTOR")
                 {
                     pastores.Add(a);
                 }
