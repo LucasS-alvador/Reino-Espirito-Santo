@@ -7,14 +7,23 @@
         <div class="col-md-8 d-flex flex-column align-items-center justify-content-between" style="height: 400px;">
             <h4 class="text-dark mb-4">Total</h4>
             <div class="p-4 rounded d-flex flex-column justify-content-center align-items-center" style="border-style: dotted; height: 100%; background-color: #f8f9fa;">
-                <h1 class="text-center">@Model.Total</h1>
+                <h1 class="text-center">@Model.Total.ToString("C")</h1>
             </div>
             <a type="button" class="btn btn-primary btn-lg mt-4" asp-controller="Dizimos" asp-action="Contribuir">Ofertar</a>
         </div>
+
         <div class="col-md-3" style="height: 200px; margin-top: 45px;">
             <h4 class="text-dark mb-4">Adicionado</h4>
             <div class="p-4 rounded d-flex flex-column justify-content-start" style="border-style: dotted; height: 100%; background-color: #f8f9fa;">
-                <h2 class="text-start">@Model.Adicionado</h2>
+                <h2 class="text-start">@Model.Adicionado.ToString("C")</h2>
+            </div>
+
+            <h4 class="text-dark mt-4">Adicionados Anteriores</h4>
+            <div class="p-4 rounded d-flex flex-column justify-content-start" style="border-style: dotted; height: 100%; background-color: #f8f9fa;">
+                @foreach (var item in Model.AdicionadosAntigos)
+                {
+                    <p class="text-success">@item.ToString("C")</p> <!-- Exibindo os valores antigos em verde -->
+                }
             </div>
         </div>
     </div>
