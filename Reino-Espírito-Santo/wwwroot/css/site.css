@@ -18,5 +18,12 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: black;
+}
+td{
+    color:white
+}
+.importante{
+    color:orange
 }

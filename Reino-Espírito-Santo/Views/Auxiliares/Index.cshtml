@@ -1,6 +1,8 @@
 ﻿@using Reino_Espírito_Santo.Models.Auxiliares
 @model AuxiliaresModel
+
 <div class="container mt-4">
+    <h3 class="importante" >Auxiliares</h3>
     <table class="table table-striped table-bordered text-center">
     <thead class="table-dark">
         <tr>
@@ -21,7 +23,7 @@
                 <td>@auxiliar.Funcao</td>
                 <td>@auxiliar.Telefone</td>
                 <td>
-                    <a type="button" class="btn btn-warning btn-sm" asp-area="" asp-controller="Auxiliares" asp-action="Record" asp-route-id="@auxiliar.Id">Edit</a>
+                    <a type="button" class="btn btn-warning btn-sm" asp-area="" asp-controller="Auxiliares" asp-action="Record" asp-route-id="@auxiliar.Id">Editar</a>
                       
                 </td>
                 <td>
