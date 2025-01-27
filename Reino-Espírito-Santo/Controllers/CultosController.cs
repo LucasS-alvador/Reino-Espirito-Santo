@@ -46,5 +46,15 @@ namespace Reino_Espírito_Santo.Controllers
             standardCultos.Add(culto);
             return RedirectToAction("Index");
         }
+
+        public IActionResult Deletar(int id)
+        {
+            var culto = standardCultos.FirstOrDefault(a => a.Id == id);
+            if (culto != null)
+            {
+                standardCultos.Remove(culto);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
