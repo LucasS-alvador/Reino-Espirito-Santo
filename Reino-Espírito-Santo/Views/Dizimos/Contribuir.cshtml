@@ -2,24 +2,66 @@
 @model DizimoModel
 
 <style>
+    .container {
+        max-width: 800px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        font-size: 1.2rem;
+        padding: 10px;
+    }
+
     button {
-        margin-top: 10px;
+        margin-top: 20px;
+        padding: 12px 30px;
+        font-size: 1.2rem;
+    }
+
+    .card {
+        padding: 30px;
+        border-radius: 10px;
+        background-color: #f8f9fa;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h3 {
+        color: #007bff;
+        margin-bottom: 30px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+    .text-center {
+        text-align: center;
     }
 </style>
 
-<div>
-    <h3 class="text-center">Dízime</h3>
-    <form asp-controller="Dizimos" asp-action="Contribuir" method="post">
-        <div class="row justify-content-center">
-            
-            <div class="col-md-5 form-group">
-                <label></label>
-                <input type="number" id="nome" class="form-control" asp-for="Adicionado" />
-            </div>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 card">
+            <h3 class="text-center" style="color:orange">Faça sua Oferenda</h3>
+            <form asp-controller="Dizimos" asp-action="Contribuir" method="post">
+                <div class="form-group">
+                    <label for="Adicionado">Valor a Ofertar</label>
+                    <input type="number" id="Adicionado" class="form-control" asp-for="Adicionado" placeholder="Informe o valor" step="0.01" />
+                </div>
+
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-warning btn-lg mt-4">Ofertar</button>
+                </div>
+            </form>
         </div>
-       
-        <div class="form-group text-center" style="margin: 10px;">
-            <button type="submit" class="btn btn-primary btn-lg text-center">Ofertar</button>
-        </div>
-    </form>
+    </div>
 </div>

@@ -7,8 +7,8 @@ namespace Reino_Espírito_Santo.Controllers
     {
         public static decimal _Total = 0;
         public static decimal _UltimaContribuicao = 0;
-        public static List<decimal> _AdicionadosAntigos = new List<decimal> {};  
-        private const int MaxContribuicoes = 3;  
+        public static List<decimal> _AdicionadosAntigos = new List<decimal>();
+        private const int MaxContribuicoes = 4;
 
         public IActionResult Index()
         {
@@ -37,7 +37,6 @@ namespace Reino_Espírito_Santo.Controllers
                 _AdicionadosAntigos.RemoveAt(_AdicionadosAntigos.Count - 1);
             }
 
-            // Adiciona o novo valor no topo da lista
             _AdicionadosAntigos.Insert(0, model.Adicionado);
 
             return RedirectToAction("Index");
