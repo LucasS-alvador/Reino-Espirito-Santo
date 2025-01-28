@@ -6,7 +6,8 @@
         public decimal Total { get; set; }
         public decimal Adicionado { get; set; }
 
-        // Lista de contribuições anteriores
-        public List<decimal> AdicionadosAntigos { get; set; } = new List<decimal>();
+        public decimal AntigoAdd1 { get; set; }
+        public decimal AntigoAdd2 { get; set; }
+        public decimal AntigoAdd3 { get; set; }
     }
 }
