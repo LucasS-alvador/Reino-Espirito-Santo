@@ -29,35 +29,36 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-white nav-options" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Cultos" asp-action="Index">Cultos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Auxiliares" asp-action="Index">Auxiliares</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Missionarios" asp-action="Index">Missionarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Dizimos" asp-action="index">Dizimos</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-white dropdown-toggle" id="navbarDropdownHome" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">
+                                Home
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownHome">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Cultos" asp-action="Index">Cultos</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Missionarios" asp-action="Index">Missionários</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Dizimos" asp-action="index">Dízimos</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Auxiliares" asp-action="Index">Auxiliares</a></li>
+                            </ul>
                         </li>
                     </ul>
 
-                    <!-- Centralizando o "Reino Espírito Santo" -->
                     <div class="mx-auto text-center">
                         <b>
                             <div style="margin-right:860px;">
                                 <a class="navbar-brand text-white" style="margin-right:0;" asp-area="" asp-controller="Home" asp-action="Index">Reino</a>
-                            <a class="navbar-brand" style="background-color:orange; border-radius:5px; padding-left:5px; padding-right:5px" asp-area="" asp-controller="Home" asp-action="Index">Espírito Santo</a></div>
+                                <a class="navbar-brand" style="background-color:orange; border-radius:5px; padding-left:5px; padding-right:5px" asp-area="" asp-controller="Home" asp-action="Index">Espírito Santo</a>
+                            </div>
                         </b>
                     </div>
 
                 </div>
             </div>
         </nav>
+
+
+
+
 
     </header>
     <div class="container">
