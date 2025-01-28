@@ -1,30 +1,21 @@
 ﻿@using Reino_Espírito_Santo.Models.Dizimo
 @model DizimoModel
-<h3 class="importante">Dizimos</h3>
+
+<h3 class="importante" style="color:white">Dizimos</h3>
 <div class="container mt-5">
     <div class="row">
 
         <div class="col-md-8 d-flex flex-column align-items-center justify-content-between" style="height: 400px;">
-<<<<<<< HEAD
-            <h4 style="color: white">Total</h4>
-            <div class="p-4 rounded d-flex flex-column justify-content-center align-items-center" style="border-style: dotted; height: 100%; background-color:floralwhite;">
-=======
             <h4 class="text-white mb-4">Total</h4>
             <div class="p-4 rounded d-flex flex-column justify-content-center align-items-center" style="border-style: dotted; height: 100%; background-color: #f8f9fa;">
->>>>>>> 47820595d7a276f5495e63d82090cc9c52842b44
                 <h1 class="text-center">@Model.Total.ToString("C")</h1>
             </div>
             <a type="button" class="btn btn-warning btn-lg mt-4" asp-controller="Dizimos" asp-action="Contribuir">Ofertar</a>
         </div>
 
         <div class="col-md-3" style="height: 200px; margin-top: 45px;">
-<<<<<<< HEAD
-            <h4 style="color: white">Adicionado</h4>
-            <div class="p-4 rounded d-flex flex-column justify-content-start" style="border-style: dotted; height: 100%; background-color:floralwhite;">
-=======
             <h4 class="text-white mb-4">Adicionado</h4>
             <div class="p-4 rounded d-flex flex-column justify-content-start" style="border-style: dotted; height: 100%; background-color: #f8f9fa;">
->>>>>>> 47820595d7a276f5495e63d82090cc9c52842b44
                 <h2 class="text-start">@Model.Adicionado.ToString("C")</h2>
 
                 @foreach (var item in Model.AdicionadosAntigos.Skip(1))
@@ -33,5 +24,6 @@
                 }
             </div>
         </div>
+
     </div>
 </div>
