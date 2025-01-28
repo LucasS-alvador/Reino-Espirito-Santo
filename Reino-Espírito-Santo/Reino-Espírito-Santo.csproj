@@ -11,4 +11,12 @@
     <Content Remove="Views\Dizimos\Record.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\img\menu.jpeg" />
+  </ItemGroup>
+
 </Project>
