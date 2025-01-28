@@ -18,10 +18,21 @@ html {
 }
 
 body {
+<<<<<<< HEAD
   margin-bottom: 60px;
   background-color:black;
 }
 
 th {
     color:white;
+=======
+    margin-bottom: 60px;
+    background-color: black;
+}
+td{
+    color:white
+}
+.importante{
+    color:orange
+>>>>>>> 47820595d7a276f5495e63d82090cc9c52842b44
 }
