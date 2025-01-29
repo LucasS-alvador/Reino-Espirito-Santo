@@ -18,9 +18,17 @@
             <div class="p-4 rounded d-flex flex-column justify-content-start" style="border-style: dotted; height: 100%; background-color: #f8f9fa;">
                 <h2 class="text-start">@Model.Adicionado.ToString("C")</h2>
 
-                @foreach (var item in Model.AdicionadosAntigos.Skip(1))
+                @if (Model.AntigoAdd1 > 0 && Model.AntigoAdd1 != Model.Adicionado)
                 {
-                    <p class="text-success">+@item.ToString("C")</p>
+                    <p class="text-success">+@Model.AntigoAdd1.ToString("C")</p>
+                }
+                @if (Model.AntigoAdd2 > 0 && Model.AntigoAdd2 != Model.Adicionado)
+                {
+                    <p class="text-success">+@Model.AntigoAdd2.ToString("C")</p>
+                }
+                @if (Model.AntigoAdd3 > 0 && Model.AntigoAdd3 != Model.Adicionado)
+                {
+                    <p class="text-success">+@Model.AntigoAdd3.ToString("C")</p>
                 }
             </div>
         </div>

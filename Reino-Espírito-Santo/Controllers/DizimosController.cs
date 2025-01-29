@@ -7,7 +7,10 @@ namespace Reino_Espírito_Santo.Controllers
     {
         public static decimal _Total = 0;
         public static decimal _UltimaContribuicao = 0;
-        public static List<decimal> _AdicionadosAntigos = new List<decimal>();
+        public static decimal _AntigoAdd1 = 0;
+        public static decimal _AntigoAdd2 = 0;
+        public static decimal _AntigoAdd3 = 0;
+
         private const int MaxContribuicoes = 4;
 
         public IActionResult Index()
@@ -16,7 +19,9 @@ namespace Reino_Espírito_Santo.Controllers
             {
                 Total = _Total,
                 Adicionado = _UltimaContribuicao,
-                AdicionadosAntigos = _AdicionadosAntigos.Take(MaxContribuicoes).ToList()
+                AntigoAdd1 = _AntigoAdd1,
+                AntigoAdd2 = _AntigoAdd2,
+                AntigoAdd3 = _AntigoAdd3
             };
             return View(model);
         }
@@ -32,12 +37,9 @@ namespace Reino_Espírito_Santo.Controllers
             _UltimaContribuicao = model.Adicionado;
             _Total += model.Adicionado;
 
-            if (_AdicionadosAntigos.Count >= MaxContribuicoes)
-            {
-                _AdicionadosAntigos.RemoveAt(_AdicionadosAntigos.Count - 1);
-            }
-
-            _AdicionadosAntigos.Insert(0, model.Adicionado);
+            _AntigoAdd3 = _AntigoAdd2;
+            _AntigoAdd2 = _AntigoAdd1;
+            _AntigoAdd1 = model.Adicionado;
 
             return RedirectToAction("Index");
         }

@@ -1,4 +1,8 @@
-﻿namespace Reino_Espírito_Santo.Models
+﻿using Microsoft.AspNetCore.SignalR;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+
+namespace Reino_Espírito_Santo.Models
 {
     public class Culto
     {
@@ -21,5 +25,53 @@
             this.PastorID = -1;
             this.Link = "placeholder";
         }
+        public static Culto Get(int id)
+        {
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+                var querry = $"SELECT * FROM CULTO WHERE ID = {id}";
+                MySqlCommand cmd = new MySqlCommand(querry, conn);
+                var reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    return new Culto
+                    {
+                        Id = reader.GetInt32("ID"),
+                        Data = reader.GetDateTime("DATA"),
+                        PastorID = reader.GetInt32("PASTORID"),
+                        Link = reader.GetString("LINK"),
+                    };
+                }
+            }
+            return null;
+        }
+        public static List<Culto> GetAll()
+        {
+            var result = new List<Culto>();
+
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+                var query = "SELECT * FROM CULTOS";
+                var cmd = new MySqlCommand(query, conn);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result.Add(new Culto()
+                    {
+                        Id = reader.GetInt32("ID"),
+                        Data = reader.GetDateTime("DATA"),
+                        PastorID = reader.GetInt32("PASTORID"),
+                        Link = reader.GetString("LINK"),
+                    });
+                }
+            }
+
+            return result;
+        }
     }
 }
+
