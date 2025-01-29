@@ -35,5 +35,32 @@ namespace Reino_Espírito_Santo.Models.Dizimo
             }
             return null;
         }
+        public static List<DizimoModel> GetAll()
+        {
+            var result = new List<DizimoModel>();
+
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+                var query = "SELECT * FROM DIZIMOS";
+                var cmd = new MySqlCommand(query, conn);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result.Add(new DizimoModel()
+                    {
+                        Id = reader.GetInt32("ID"),
+                        Total = reader.GetDecimal("TOTAL"),
+                        Adicionado = reader.GetDecimal("Adicionado"),
+                        AntigoAdd1 = reader.GetDecimal("ANTIGOADD1"),
+                        AntigoAdd2 = reader.GetDecimal("ANTIGOADD2"),
+                        AntigoAdd3 = reader.GetDecimal("ANTIGOADD3"),
+                    });
+                }
+            }
+
+            return result;
+        }
     }
 }

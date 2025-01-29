@@ -47,5 +47,31 @@ namespace Reino_Espírito_Santo.Models
             }
             return null;
         }
+        public static List<Culto> GetAll()
+        {
+            var result = new List<Culto>();
+
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+                var query = "SELECT * FROM CULTOS";
+                var cmd = new MySqlCommand(query, conn);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result.Add(new Culto()
+                    {
+                        Id = reader.GetInt32("ID"),
+                        Data = reader.GetDateTime("DATA"),
+                        PastorID = reader.GetInt32("PASTORID"),
+                        Link = reader.GetString("LINK"),
+                    });
+                }
+            }
+
+            return result;
+        }
     }
 }
+

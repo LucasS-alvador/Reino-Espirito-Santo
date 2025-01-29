@@ -32,5 +32,30 @@ namespace Reino_Espírito_Santo.Models.Auxiliares
             }
             return null;
         }
+        public static List<AuxiliarModel> GetAll()
+        {
+            var result = new List<AuxiliarModel>();
+
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+                var query = "SELECT * FROM AUXILIARES";
+                var cmd = new MySqlCommand(query, conn);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result.Add(new AuxiliarModel()
+                    {
+                        Id = reader.GetInt32("ID"),
+                        Nome = reader.GetString("NOME"),
+                        Funcao = reader.GetString("FUNCAO"),
+                        Telefone = reader.GetString("TELEFONE"),
+                    });
+                }
+            }
+
+            return result;
+        }
     }
 }

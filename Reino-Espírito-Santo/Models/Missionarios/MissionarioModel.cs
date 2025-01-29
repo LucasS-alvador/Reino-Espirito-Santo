@@ -29,5 +29,30 @@ namespace Reino_Espírito_Santo.Models.Missionarios
             }
             return null;
         }
+
+        public static List<MissionarioModel> GetAll()
+        {
+            var result = new List<MissionarioModel>();
+
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+                var query = "SELECT * FROM MISSIONARIOS";
+                var cmd = new MySqlCommand(query, conn);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result.Add(new MissionarioModel()
+                    {
+                        Id = reader.GetInt32("ID"),
+                        Nome = reader.GetString("NOME"),
+                        Telefone = reader.GetString("TELEFONE"),
+                    });
+                }
+            }
+
+            return result;
+        }
     }
 }
