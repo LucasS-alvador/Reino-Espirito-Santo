@@ -1,0 +1,36 @@
+﻿@using Reino_Espírito_Santo.Models.Ministerios
+@model MinisteriosModel
+
+<div class="container mt-4">
+    <h3 class="importante">Lista de Ministérios</h3>
+    <table class="table table-striped table-bordered text-center">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Líder</th>
+                <th>Data de Início</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ministerio in Model.Ministerio)
+            {
+                <tr>
+                    <td>@ministerio.Id</td>
+                    <td>@ministerio.Nome</td>
+                    <td>@ministerio.Descricao</td> <!-- Exibe a descrição do ministério -->
+                    <td>@ministerio.auxiliarId</td> <!-- Exibe o nome do líder -->
+                    <td>@ministerio.DataInicio.ToString("dd/MM/yyyy")</td> <!-- Exibe a data de início do ministério -->
+                    <td>
+                        <a href="@Url.Action("Record", "Ministerios", new { Id = ministerio.Id })" class="btn btn-warning btn-sm">Editar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div>
+        <a href="@Url.Action("Adicionar", "Ministerios")" class="btn btn-success">Adicionar Novo Ministério</a>
+    </div>
+</div>
