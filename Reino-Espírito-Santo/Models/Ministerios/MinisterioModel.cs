@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿using Reino_Espírito_Santo.Models.Auxiliares;
+=======
+﻿using MySql.Data.MySqlClient;
+>>>>>>> e09b85956de8bf155ee0360ca447ef085c6a0683
 
 namespace Reino_Espírito_Santo.Models.Ministerio
 {
@@ -14,5 +18,55 @@ namespace Reino_Espírito_Santo.Models.Ministerio
             public string AuxiliarNome { get; set; }
         }
 
+
+        public static MinisterioModel Get(int id)
+        {
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+                var querry = $"SELECT * FROM MINISTERIOS WHERE ID = {id}";
+                MySqlCommand cmd = new MySqlCommand(querry, conn);
+                var reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    return new MinisterioModel
+                    {
+                        Id = reader.GetInt32("ID"),
+                        Nome = reader.GetString("NOME"),
+                        auxiliarId = reader.GetInt32("AUXILIARID"),
+                        Descricao = reader.GetString("DESCRICAO"),
+                        DataInicio = reader.GetDateTime("DATAINICIO"),
+                    };
+                }
+            }
+            return null;
+        }
+        public static List<MinisterioModel> GetAll()
+        {
+            var result = new List<MinisterioModel>();
+
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+                var query = "SELECT * FROM MINISTERIOS";
+                var cmd = new MySqlCommand(query, conn);
+
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    result.Add(new MinisterioModel()
+                    {
+                        Id = reader.GetInt32("ID"),
+                        Nome = reader.GetString("NOME"),
+                        auxiliarId = reader.GetInt32("AUXILIARID"),
+                        Descricao = reader.GetString("DESCRICAO"),
+                        DataInicio = reader.GetDateTime("DATAINICIO"),
+                    });
+                }
+            }
+
+            return result;
+        }
     }
 

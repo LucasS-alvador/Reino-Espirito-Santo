@@ -20,6 +20,7 @@ namespace Reino_Espírito_Santo.Controllers
 
         public IActionResult Index()
         {
+<<<<<<< HEAD
             var model = new MinisteriosModel()
             {
                 // Para cada ministério, adicione o nome do auxiliar, se existir.
@@ -36,6 +37,9 @@ namespace Reino_Espírito_Santo.Controllers
                 }).ToList()
             };
 
+=======
+            var model = new MinisteriosModel() { Ministerio = MinisterioModel.GetAll() };
+>>>>>>> e09b85956de8bf155ee0360ca447ef085c6a0683
             return View(model);
         }
 
