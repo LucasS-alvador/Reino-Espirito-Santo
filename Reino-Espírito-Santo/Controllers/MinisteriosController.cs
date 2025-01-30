@@ -15,7 +15,7 @@ namespace Reino_Espírito_Santo.Controllers
 
         public IActionResult Index()
         {
-            var model = new MinisteriosModel() { Ministerio = _Ministerio };
+            var model = new MinisteriosModel() { Ministerio = MinisterioModel.GetAll() };
             return View(model);
         }
 

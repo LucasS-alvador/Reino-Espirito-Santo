@@ -24,7 +24,7 @@ namespace Reino_Espírito_Santo.Controllers
 
         public IActionResult Index()
         {
-            var model = new AuxiliaresModel() { Auxiliares = auxiliares };
+            var model = new AuxiliaresModel() { Auxiliares = AuxiliarModel.GetAll() };
             return View(model);
         }
         public IActionResult Record(long id)
