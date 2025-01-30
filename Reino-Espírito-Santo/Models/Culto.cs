@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using System.Numerics;
+using Microsoft.AspNetCore.SignalR;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 
@@ -71,6 +72,37 @@ namespace Reino_Espírito_Santo.Models
             }
 
             return result;
+        }
+
+        public static void Delete(int id)
+        {
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+
+                var cmd = conn.CreateCommand();
+                cmd.Parameters.Add(new MySqlParameter("pID", id));
+                cmd.CommandText = @$"DELETE FROM CULTOS WHERE ID = @pID";
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public static void Create(Culto c)
+        {
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = @"INSERT INTO CULTOS (NOME, ANO, PLACA) 
+                                    VALUES (@pNOME, @pANO, @pPLACA)";
+
+                cmd.Parameters.Add(new MySqlParameter("pNOME", Nome));
+                cmd.Parameters.Add(new MySqlParameter("pANO", Ano));
+                cmd.Parameters.Add(new MySqlParameter("pPLACA", Placa));
+
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }
