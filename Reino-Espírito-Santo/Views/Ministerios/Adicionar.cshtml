@@ -13,7 +13,9 @@
     </div>
     <div class="form-group">
         <label for="AuxiliarId">Líder</label>
-        <input type="number" class="form-control" id="AuxiliarId" name="AuxiliarId" asp-for="auxiliarId" required />
+        <select class="form-control" id="AuxiliarId" name="AuxiliarId" asp-for="auxiliarId" asp-items="ViewBag.Auxiliares" required>
+            <option value="">Selecione um líder</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="DataInicio">Data de Início</label>

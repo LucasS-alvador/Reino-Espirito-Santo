@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Reino_Espírito_Santo.Models.Ministerio;
 using Reino_Espírito_Santo.Models.Ministerios;
 
@@ -27,8 +28,19 @@ namespace Reino_Espírito_Santo.Controllers
 
         public IActionResult Adicionar()
         {
+            var auxiliares = AuxiliaresController.auxiliares
+                .Select(a => new SelectListItem
+                {
+                    Value = a.Id.ToString(),
+                    Text = a.Nome
+                })
+                .ToList();
+
+            ViewBag.Auxiliares = auxiliares;
+
             return View();
         }
+
 
         [HttpPost]
 
