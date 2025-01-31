@@ -1,4 +1,6 @@
-﻿using MySql.Data;
+﻿using System;
+using System.Numerics;
+using MySql.Data;
 using MySql.Data.MySqlClient;
 
 namespace Reino_Espírito_Santo.Models.Auxiliares
@@ -9,7 +11,7 @@ namespace Reino_Espírito_Santo.Models.Auxiliares
         public string Nome { get; set; }
         public string Funcao { get; set; }
         public string Telefone { get; set; }
-        
+
         public static AuxiliarModel Get(int id)
         {
             using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
@@ -56,6 +58,56 @@ namespace Reino_Espírito_Santo.Models.Auxiliares
             }
 
             return result;
+        }
+        public static void Create(AuxiliarModel c)
+        {
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = @"INSERT INTO AUXILIARES (NOME, FUNCAO, TELEFONE) 
+                                    VALUES (@pNOME, @pFUNCAO, @pTELEFONE)";
+
+                cmd.Parameters.Add(new MySqlParameter("pNOME", c.Nome));
+                cmd.Parameters.Add(new MySqlParameter("pFUNCAO", c.Funcao));
+                cmd.Parameters.Add(new MySqlParameter("pTELEFONE", c.Telefone));
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public void Update()
+        {
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = @$"UPDATE AUXILIARES SET NOME = @pNOME, FUNCAO = @pFUNCAO, TELEFONE = @pTELEFONE
+                                    WHERE ID = @pID";
+
+                cmd.Parameters.Add(new MySqlParameter("pID", Id));
+                cmd.Parameters.Add(new MySqlParameter("pNOME", Nome));
+                cmd.Parameters.Add(new MySqlParameter("pFUNCAO", Funcao));
+                cmd.Parameters.Add(new MySqlParameter("pTELEFONE", Telefone));
+
+                cmd.ExecuteNonQuery();
+
+            }
+
+        }
+        public static void Delete(int id)
+        {
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+
+                var cmd = conn.CreateCommand();
+                cmd.Parameters.Add(new MySqlParameter("pID", id));
+                cmd.CommandText = @$"DELETE FROM AUXILIARES WHERE ID = @pID";
+
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }

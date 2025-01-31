@@ -61,16 +61,19 @@ namespace Reino_Espírito_Santo.Controllers
 
             return View(model);
         }
-        public IActionResult Delete(long id)
+        [HttpPost]
+        public IActionResult Create(AuxiliarModel auxiliar)
         {
-            var auxiliar = auxiliares.FirstOrDefault(a => a.Id == id);
-            if (auxiliar != null)
-            {
-                auxiliares.Remove(auxiliar);
-            }
+            AuxiliarModel.Create(auxiliar);
+            return RedirectToAction("Index");
+        }
+        public IActionResult Delete(int id)
+        {
+            AuxiliarModel.Delete(id);
             return RedirectToAction("Index");
         }
 
+        
     }
 }
 
