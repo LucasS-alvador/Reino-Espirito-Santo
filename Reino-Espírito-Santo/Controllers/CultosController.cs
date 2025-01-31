@@ -36,24 +36,19 @@ namespace Reino_Espírito_Santo.Controllers
 
         public IActionResult Criacao()
         {
-            var highestId = standardCultos.LastOrDefault().Id;
-            Culto c = new Culto(highestId + 1, new DateTime(2000, 1, 1, 1, 1, 1), 3, "placeholder");
+            Culto c = new Culto(-1, new DateTime(2000, 1, 1, 1, 1, 1), 3, "placeholder");
             return View(c);
         }
 
         [HttpPost] public IActionResult Criar(Culto culto)
         {
-            standardCultos.Add(culto);
+            Culto.Create(culto);
             return RedirectToAction("Index");
         }
 
         public IActionResult Deletar(int id)
         {
-            var culto = standardCultos.FirstOrDefault(a => a.Id == id);
-            if (culto != null)
-            {
-                standardCultos.Remove(culto);
-            }
+            Culto.Delete(id);
             return RedirectToAction("Index");
         }
     }

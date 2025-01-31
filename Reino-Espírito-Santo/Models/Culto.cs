@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using System.Numerics;
+using Microsoft.AspNetCore.SignalR;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using Reino_Espírito_Santo.DataBase;
@@ -73,6 +74,56 @@ namespace Reino_Espírito_Santo.Models
 
             return result;
         }
+
+        public static void Delete(int id)
+        {
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+
+                var cmd = conn.CreateCommand();
+                cmd.Parameters.Add(new MySqlParameter("pID", id));
+                cmd.CommandText = @$"DELETE FROM CULTOS WHERE ID = @pID";
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public static void Create(Culto c)
+        {
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = @"INSERT INTO CULTOS (DATA, PASTORID, LINK) 
+                                    VALUES (@pDATA, @pPASTORID, @pLINK)";
+
+                cmd.Parameters.Add(new MySqlParameter("pDATA", c.Data));
+                cmd.Parameters.Add(new MySqlParameter("pPASTORID", c.PastorID));
+                cmd.Parameters.Add(new MySqlParameter("pLINK", c.Link));
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+        public void Update()
+        {
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = @$"UPDATE CULTOS SET DATA = @pDATA, PASTORID = @pPASTORID, LINK = @pLINK
+                                    WHERE ID = @pID";
+
+                cmd.Parameters.Add(new MySqlParameter("pID", Id));
+                cmd.Parameters.Add(new MySqlParameter("pDATA", Data));
+                cmd.Parameters.Add(new MySqlParameter("pPASTORID", PastorID));
+                cmd.Parameters.Add(new MySqlParameter("pLINK", Link));
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
     }
 }
 
