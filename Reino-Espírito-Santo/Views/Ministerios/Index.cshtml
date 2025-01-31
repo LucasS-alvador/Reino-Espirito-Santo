@@ -20,9 +20,9 @@
                 <tr>
                     <td>@ministerio.Id</td>
                     <td>@ministerio.Nome</td>
-                    <td>@ministerio.Descricao</td> <!-- Exibe a descrição do ministério -->
-                    <td>@ministerio.auxiliarId</td> <!-- Exibe o nome do líder -->
-                    <td>@ministerio.DataInicio.ToString("dd/MM/yyyy")</td> <!-- Exibe a data de início do ministério -->
+                    <td>@ministerio.Descricao</td>
+                    <td>@ministerio.AuxiliarNome</td> <!-- Exibe o nome do auxiliar -->
+                    <td>@ministerio.DataInicio.ToString("dd/MM/yyyy")</td>
                     <td>
                         <a href="@Url.Action("Record", "Ministerios", new { Id = ministerio.Id })" class="btn btn-warning btn-sm">Editar</a>
                     </td>
