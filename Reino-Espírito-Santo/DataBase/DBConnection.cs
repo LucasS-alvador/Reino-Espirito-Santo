@@ -1,6 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 
-namespace Reino_Espírito_Santo
+namespace Reino_Espírito_Santo.DataBase
 {
     public class DBConnection
     {

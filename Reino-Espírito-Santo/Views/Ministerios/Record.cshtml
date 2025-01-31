@@ -1,4 +1,4 @@
-﻿@model Reino_Espírito_Santo.Models.Ministerio.MinisterioModel
+﻿@model Reino_Espírito_Santo.Models.Ministerios.MinisterioModel
 
 <div class="container mt-4">
     <h3 class="text-center">Editar Ministério</h3>
@@ -15,9 +15,10 @@
             <input type="text" id="Descricao" name="Descricao" class="form-control" value="@Model.Descricao" required />
         </div>
         <div class="form-group">
-            <label for="Lider">Líder</label>
-            <input type="text" id="Lider" name="Lider" class="form-control" value="@Model.auxiliarId" required />
-        </div>
+            <label for="AuxiliarId">Líder</label>
+            <select class="form-control" id="AuxiliarId" name="AuxiliarId" asp-for="auxiliarId" asp-items="ViewBag.Auxiliares" required>
+                <option value="Model.auxiliarNome"></option>
+            </select>
         <div class="form-group">
             <label for="DataInicio">Data de Início</label>
             <input type="date" id="DataInicio" name="DataInicio" class="form-control" value="@Model.DataInicio.ToString("yyyy-MM-dd")" required />

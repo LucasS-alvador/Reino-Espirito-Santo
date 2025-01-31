@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using Reino_Espírito_Santo.DataBase;
 
 namespace Reino_Espírito_Santo.Models
 {

@@ -1,4 +1,4 @@
-﻿using Reino_Espírito_Santo.Models.Ministerio;
+﻿using Reino_Espírito_Santo.Models.Ministerios;
 
 namespace Reino_Espírito_Santo.Models.Ministerios
 {
