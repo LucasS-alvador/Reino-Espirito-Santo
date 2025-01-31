@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Reino_Espírito_Santo.Models.Auxiliares;
 using Reino_Espírito_Santo.Models.Ministerio;
 using Reino_Espírito_Santo.Models.Ministerios;
 
@@ -13,11 +16,14 @@ namespace Reino_Espírito_Santo.Controllers
             new MinisterioModel(){Id = 3, Nome = "ministerio3",  Descricao = "Ministério de Oração", auxiliarId = 3, DataInicio = new DateTime(2021, 8, 30)},
         };
 
+
+
         public IActionResult Index()
         {
             var model = new MinisteriosModel() { Ministerio = MinisterioModel.GetAll() };
             return View(model);
         }
+
 
         public IActionResult Record(long id)
         {
@@ -27,8 +33,19 @@ namespace Reino_Espírito_Santo.Controllers
 
         public IActionResult Adicionar()
         {
+            var auxiliares = AuxiliaresController.auxiliares
+                .Select(a => new SelectListItem
+                {
+                    Value = a.Id.ToString(),
+                    Text = a.Nome
+                })
+                .ToList();
+
+            ViewBag.Auxiliares = auxiliares;
+
             return View();
         }
+
 
         [HttpPost]
 

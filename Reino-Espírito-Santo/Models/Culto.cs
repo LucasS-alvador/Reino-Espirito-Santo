@@ -94,16 +94,35 @@ namespace Reino_Espírito_Santo.Models
                 conn.Open();
 
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = @"INSERT INTO CULTOS (NOME, ANO, PLACA) 
-                                    VALUES (@pNOME, @pANO, @pPLACA)";
+                cmd.CommandText = @"INSERT INTO CULTOS (DATA, PASTORID, LINK) 
+                                    VALUES (@pDATA, @pPASTORID, @pLINK)";
 
-                cmd.Parameters.Add(new MySqlParameter("pNOME", Nome));
-                cmd.Parameters.Add(new MySqlParameter("pANO", Ano));
-                cmd.Parameters.Add(new MySqlParameter("pPLACA", Placa));
+                cmd.Parameters.Add(new MySqlParameter("pDATA", c.Data));
+                cmd.Parameters.Add(new MySqlParameter("pPASTORID", c.PastorID));
+                cmd.Parameters.Add(new MySqlParameter("pLINK", c.Link));
 
                 cmd.ExecuteNonQuery();
             }
         }
+        public void Update()
+        {
+            using (MySqlConnection conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
+            {
+                conn.Open();
+
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = @$"UPDATE CULTOS SET DATA = @pDATA, PASTORID = @pPASTORID, LINK = @pLINK
+                                    WHERE ID = @pID";
+
+                cmd.Parameters.Add(new MySqlParameter("pID", Id));
+                cmd.Parameters.Add(new MySqlParameter("pDATA", Data));
+                cmd.Parameters.Add(new MySqlParameter("pPASTORID", PastorID));
+                cmd.Parameters.Add(new MySqlParameter("pLINK", Link));
+
+                cmd.ExecuteNonQuery();
+            }
+        }
+
     }
 }
 

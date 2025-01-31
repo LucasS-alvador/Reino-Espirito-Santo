@@ -1,14 +1,14 @@
 CREATE DATABASE IGREJA;
 USE IGREJA;
 
--- Tabela de Missionários
-CREATE TABLE MISSIONARIOS (
+CREATE TABLE MINISTERIOS (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     NOME VARCHAR(100),
-    TELEFONE VARCHAR(15)
+    DESCRICAO VARCHAR(100),
+    ID_AUXILIAR INT,
+    DT_INICIO datetime
 );
 
--- Tabela de Auxiliares
 CREATE TABLE AUXILIARES (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     NOME VARCHAR(100),
@@ -16,16 +16,16 @@ CREATE TABLE AUXILIARES (
     TELEFONE VARCHAR(15)
 );
 
--- Tabela de Cultos
+
 CREATE TABLE CULTOS (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     DATA DATETIME,
     PASTORID INT,
     LINK VARCHAR(250),
-    FOREIGN KEY (PASTORID) REFERENCES Missionarios(ID) -- Correção aqui
+    FOREIGN KEY (PASTORID) REFERENCES MINISTERIOS(ID) 
 );
 
--- Tabela de Dízimos
+
 CREATE TABLE DIZIMOS (
     ID INT AUTO_INCREMENT PRIMARY KEY,
     TOTAL DECIMAL,
@@ -34,3 +34,91 @@ CREATE TABLE DIZIMOS (
     ANTIGOADD2 DECIMAL,
     ANTIGOADD3 DECIMAL
 );
+
+insert into auxiliares (NOME,FUNCAO,TELEFONE) VALUES 
+('MARIA','SECRETARIA','13456'),
+('JOÃO','DIÁCONO','14567'),
+('ANA','PRESBITERA','15678'),
+('PEDRO','LÍDER DE CÉLULA','16789'),
+('PAULA','CANTORA','17890'),
+('RICARDO','LÍDER DE CÉLULA','18901'),
+('LÚCIA','SECRETÁRIA','19012'),
+('CARLOS','PRESBITERO','20123'),
+('FERNANDA','PRESBITERA','21234'),
+('MARCOS','DIÁCONO','22345'),
+('SILVIA','LÍDER DE CÉLULA','23456'),
+('GUSTAVO','CANTOR','24567'),
+('MARTA','SECRETÁRIA','25678'),
+('FÁBIO','PRESBITERO','26789'),
+('JULIANA','LÍDER DE CÉLULA','27890'),
+('TOMÁS','DIÁCONO','28901'),
+('ALICE','PRESBITERA','29012'),
+('VITOR','LÍDER DE CÉLULA','30123'),
+('RENATA','CANTORA','31234'),
+('DANIEL','SECRETÁRIO','32345');
+
+insert into ministerios (NOME, DESCRICAO, ID_AUXILIAR, DT_INICIO) VALUES
+('Ministério de Louvor','Ministério responsável pelo louvor nas celebrações', 1, '2025-01-01 08:00:00'),
+('Ministério Infantil','Ministério dedicado ao ensino e cuidado das crianças', 2, '2025-01-01 09:00:00'),
+('Ministério de Oração','Ministério que lidera os momentos de oração da igreja', 3, '2025-01-01 10:00:00'),
+('Ministério de Ensino','Responsável pelo ensino bíblico para todos os grupos', 4, '2025-01-02 08:30:00'),
+('Ministério de Visitação','Ministério que realiza visitas a membros e visitantes', 5, '2025-01-02 09:00:00'),
+('Ministério de Jovens','Ministério voltado para o trabalho com os jovens da igreja', 6, '2025-01-02 10:00:00'),
+('Ministério de Mulheres','Ministério de apoio e desenvolvimento das mulheres da igreja', 7, '2025-01-03 08:00:00'),
+('Ministério de Homens','Ministério voltado para os homens da igreja', 8, '2025-01-03 09:00:00'),
+('Ministério de Aconselhamento','Ministério responsável por aconselhamento espiritual e pessoal', 9, '2025-01-03 10:00:00'),
+('Ministério de Mídia','Ministério responsável pela produção de conteúdo de mídia da igreja', 10, '2025-01-04 08:00:00'),
+('Ministério de Transporte','Responsável pelo transporte de membros para os cultos e eventos', 11, '2025-01-04 09:00:00'),
+('Ministério de Casais','Ministério que auxilia no fortalecimento dos casamentos da igreja', 12, '2025-01-04 10:00:00'),
+('Ministério de Alimentação','Ministério que cuida da preparação de alimentos para eventos da igreja', 13, '2025-01-05 08:00:00'),
+('Ministério de Evangelismo','Responsável por iniciativas de evangelismo e divulgação do evangelho', 14, '2025-01-05 09:00:00'),
+('Ministério de Ação Social','Ministério que organiza ações de apoio social à comunidade', 15, '2025-01-05 10:00:00'),
+('Ministério de Teatro','Ministério responsável pelas apresentações teatrais da igreja', 16, '2025-01-06 08:00:00'),
+('Ministério de Música','Ministério responsável por treinar e organizar os músicos da igreja', 17, '2025-01-06 09:00:00'),
+('Ministério de Administração','Responsável pela parte administrativa e financeira da igreja', 18, '2025-01-06 10:00:00'),
+('Ministério de Arte','Ministério que organiza exposições artísticas e culturais', 19, '2025-01-07 08:00:00'),
+('Ministério de Recursos Humanos','Responsável pelo cuidado e gestão dos voluntários da igreja', 20, '2025-01-07 09:00:00');
+
+insert into cultos (DATA, PASTORID, LINK) VALUES
+('2025-01-01 19:00:00', 1, 'https://linkdoculto1.com'),
+('2025-01-03 19:00:00', 2, 'https://linkdoculto2.com'),
+('2025-01-05 10:00:00', 3, 'https://linkdoculto3.com'),
+('2025-01-07 19:00:00', 4, 'https://linkdoculto4.com'),
+('2025-01-10 19:00:00', 5, 'https://linkdoculto5.com'),
+('2025-01-12 10:00:00', 6, 'https://linkdoculto6.com'),
+('2025-01-14 19:00:00', 7, 'https://linkdoculto7.com'),
+('2025-01-17 19:00:00', 8, 'https://linkdoculto8.com'),
+('2025-01-19 10:00:00', 9, 'https://linkdoculto9.com'),
+('2025-01-21 19:00:00', 10, 'https://linkdoculto10.com'),
+('2025-01-24 19:00:00', 11, 'https://linkdoculto11.com'),
+('2025-01-26 10:00:00', 12, 'https://linkdoculto12.com'),
+('2025-01-28 19:00:00', 13, 'https://linkdoculto13.com'),
+('2025-01-30 19:00:00', 14, 'https://linkdoculto14.com'),
+('2025-02-02 10:00:00', 15, 'https://linkdoculto15.com'),
+('2025-02-04 19:00:00', 16, 'https://linkdoculto16.com'),
+('2025-02-07 19:00:00', 17, 'https://linkdoculto17.com'),
+('2025-02-09 10:00:00', 18, 'https://linkdoculto18.com'),
+('2025-02-11 19:00:00', 19, 'https://linkdoculto19.com'),
+('2025-02-14 19:00:00', 20, 'https://linkdoculto20.com');
+
+insert into dizimos (TOTAL, ADICIONADO, ANTIGOADD1, ANTIGOADD2, ANTIGOADD3) VALUES
+(500.00, 50.00, 100.00, 150.00, 200.00),
+(300.00, 30.00, 60.00, 90.00, 120.00),
+(450.00, 45.00, 90.00, 135.00, 180.00),
+(600.00, 60.00, 120.00, 180.00, 240.00),
+(550.00, 55.00, 110.00, 165.00, 220.00),
+(700.00, 70.00, 140.00, 210.00, 280.00),
+(350.00, 35.00, 70.00, 105.00, 140.00),
+(800.00, 80.00, 160.00, 240.00, 320.00),
+(900.00, 90.00, 180.00, 270.00, 360.00),
+(450.00, 45.00, 90.00, 135.00, 180.00),
+(650.00, 65.00, 130.00, 195.00, 260.00),
+(950.00, 95.00, 190.00, 285.00, 380.00),
+(750.00, 75.00, 150.00, 225.00, 300.00),
+(400.00, 40.00, 80.00, 120.00, 160.00),
+(500.00, 50.00, 100.00, 150.00, 200.00),
+(300.00, 30.00, 60.00, 90.00, 120.00),
+(600.00, 60.00, 120.00, 180.00, 240.00),
+(350.00, 35.00, 70.00, 105.00, 140.00),
+(450.00, 45.00, 90.00, 135.00, 180.00),
+(550.00, 55.00, 110.00, 165.00, 220.00);
