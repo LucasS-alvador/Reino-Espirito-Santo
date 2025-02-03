@@ -10,7 +10,6 @@ namespace Reino_Espírito_Santo.Controllers
     {
         public IActionResult Index()
         {
-<<<<<<< HEAD
             var model = new MinisteriosModel();
             model.Ministerio = new List<MinisterioModel>();
 
@@ -19,9 +18,6 @@ namespace Reino_Espírito_Santo.Controllers
             // A forma mais simples de mapear os dados
             model.Ministerio = ministerios.Select(ministerioEntidade => new MinisterioModel(ministerioEntidade)).ToList();
 
-=======
-            var model = new MinisteriosModel() { Ministerio = MinisterioModel.GetAll() };
->>>>>>> c9bfaf7ff9c45cea5043e7835070a67eaef4c75e
             return View(model);
         }
 
