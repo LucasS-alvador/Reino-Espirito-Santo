@@ -59,6 +59,7 @@ namespace Reino_Espírito_Santo.Models
                 conn.Open();
 
                 var cmd = conn.CreateCommand();
+                FillParameters(cmd.Parameters);
                 cmd.CommandText = @$"INSERT INTO {TableName} ({string.Join(",", Fields)}) VALUES ({string.Join(", ", Fields.Select(campo => $"@p{campo}"))})";
                 cmd.ExecuteNonQuery();
             }
