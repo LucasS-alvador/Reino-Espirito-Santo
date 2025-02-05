@@ -24,7 +24,7 @@ namespace Reino_Espírito_Santo.Controllers
 
         public IActionResult Index()
         {
-            var model = new AuxiliaresModel() { Auxiliares = AuxiliarModel.GetAll() };
+            var model = new AuxiliaresModel() { Auxiliares = new AuxiliarModel().GetAll() };
             return View(model);
         }
         public IActionResult Record(long id)
@@ -64,12 +64,12 @@ namespace Reino_Espírito_Santo.Controllers
         [HttpPost]
         public IActionResult Create(AuxiliarModel auxiliar)
         {
-            AuxiliarModel.Create(auxiliar);
+            auxiliar.Create();
             return RedirectToAction("Index");
         }
         public IActionResult Delete(int id)
         {
-            AuxiliarModel.Delete(id);
+            new AuxiliarModel().Delete(id);
             return RedirectToAction("Index");
         }
 

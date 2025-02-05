@@ -17,7 +17,7 @@ namespace Reino_Espírito_Santo.Controllers
             var listaDeCultos = new ListaDeCultosEAuxiliares();
             listaDeCultos.cultos = Culto.GetAll();
             var pastores = new List<AuxiliarModel>();
-            foreach (var a in AuxiliarModel.GetAll())
+            foreach (var a in new AuxiliarModel().GetAll())
             {
                 if (a.Funcao == null)
                 {
