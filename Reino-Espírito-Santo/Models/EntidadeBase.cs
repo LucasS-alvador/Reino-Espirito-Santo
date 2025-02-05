@@ -6,7 +6,7 @@ namespace Reino_Espírito_Santo.Models
 {
     public abstract class EntidadeBase<T>
     {
-        public long Id { get; set; }
+        public long ID { get; set; }
         public abstract string TableName { get; }
         public abstract List<String> Fields { get;}
         public abstract T Fill(MySqlDataReader reader);
