@@ -1,30 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MySql.Data.MySqlClient;
 using Reino_Espírito_Santo.Models.Dizimo;
-using System.Data;
+using System.Linq;
 
 namespace Reino_Espírito_Santo.Controllers
 {
     public class DizimosController : Controller
     {
-        public static decimal _Total = 0;
-        public static decimal _UltimaContribuicao = 0;
-        public static decimal _AntigoAdd1 = 0;
-        public static decimal _AntigoAdd2 = 0;
-        public static decimal _AntigoAdd3 = 0;
+        private readonly DizimoModel _dizimoModel;
 
-        private const int MaxContribuicoes = 4;
+        public DizimosController()
+        {
+            _dizimoModel = new DizimoModel();
+        }
 
         public IActionResult Index()
         {
+            var contribuições = _dizimoModel.GetAll();
+            var ultimoDizimo = contribuições.LastOrDefault();
+
             var model = new DizimoModel()
             {
-                Total = _Total,
-                Adicionado = _UltimaContribuicao,
-                AntigoAdd1 = _AntigoAdd1,
-                AntigoAdd2 = _AntigoAdd2,
-                AntigoAdd3 = _AntigoAdd3
+                Total = ultimoDizimo?.Total ?? 0,
+                Adicionado = ultimoDizimo?.Adicionado ?? 0,
+                AntigoAdd1 = ultimoDizimo?.AntigoAdd1 ?? 0,
+                AntigoAdd2 = ultimoDizimo?.AntigoAdd2 ?? 0,
+                AntigoAdd3 = ultimoDizimo?.AntigoAdd3 ?? 0
             };
+
             return View(model);
         }
 
@@ -36,21 +38,24 @@ namespace Reino_Espírito_Santo.Controllers
         [HttpPost]
         public IActionResult Contribuir(DizimoModel model)
         {
-            _UltimaContribuicao = model.Adicionado;
-            _Total += model.Adicionado;
-
-            _AntigoAdd3 = _AntigoAdd2;
-            _AntigoAdd2 = _AntigoAdd1;
-            _AntigoAdd1 = model.Adicionado;
+            var contribuições = _dizimoModel.GetAll();
+            var ultimoDizimo = contribuições.LastOrDefault();
 
             var novoDizimo = new DizimoModel()
             {
-                Total = _Total,
+                Total = (ultimoDizimo?.Total ?? 0) + model.Adicionado,
                 Adicionado = model.Adicionado,
-                AntigoAdd1 = _AntigoAdd1,
-                AntigoAdd2 = _AntigoAdd2,
-                AntigoAdd3 = _AntigoAdd3
+                AntigoAdd1 = ultimoDizimo?.AntigoAdd1 ?? 0,
+                AntigoAdd2 = ultimoDizimo?.AntigoAdd2 ?? 0,
+                AntigoAdd3 = ultimoDizimo?.AntigoAdd3 ?? 0
             };
+
+            if (novoDizimo.AntigoAdd1 == 0)
+                novoDizimo.AntigoAdd1 = model.Adicionado;
+            else if (novoDizimo.AntigoAdd2 == 0)
+                novoDizimo.AntigoAdd2 = model.Adicionado;
+            else if (novoDizimo.AntigoAdd3 == 0)
+                novoDizimo.AntigoAdd3 = model.Adicionado;
 
             novoDizimo.Create();
 
