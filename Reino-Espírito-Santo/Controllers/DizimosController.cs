@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
 using Reino_Espírito_Santo.Models.Dizimo;
+using System.Data;
 
 namespace Reino_Espírito_Santo.Controllers
 {
@@ -40,6 +42,17 @@ namespace Reino_Espírito_Santo.Controllers
             _AntigoAdd3 = _AntigoAdd2;
             _AntigoAdd2 = _AntigoAdd1;
             _AntigoAdd1 = model.Adicionado;
+
+            var novoDizimo = new DizimoModel()
+            {
+                Total = _Total,
+                Adicionado = model.Adicionado,
+                AntigoAdd1 = _AntigoAdd1,
+                AntigoAdd2 = _AntigoAdd2,
+                AntigoAdd3 = _AntigoAdd3
+            };
+
+            novoDizimo.Create();
 
             return RedirectToAction("Index");
         }
