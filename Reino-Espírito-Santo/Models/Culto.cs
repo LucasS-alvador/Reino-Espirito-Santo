@@ -48,7 +48,6 @@ namespace Reino_Espírito_Santo.Models
         }
         public override void FillParameters(MySqlParameterCollection parameters)
         {
-            parameters.Add(new MySqlParameter("pID", ID));
             parameters.Add(new MySqlParameter("pDATA", Data));
             parameters.Add(new MySqlParameter("pPASTORID", PastorID));
             parameters.Add(new MySqlParameter("pLINK", Link));

@@ -56,11 +56,13 @@ namespace Reino_Espírito_Santo.Models
         {
             using (var conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
             {
+                var EliminateID = Fields;
+                EliminateID.Remove("ID");
                 conn.Open();
 
                 var cmd = conn.CreateCommand();
                 FillParameters(cmd.Parameters);
-                cmd.CommandText = @$"INSERT INTO {TableName} ({string.Join(",", Fields)}) VALUES ({string.Join(", ", Fields.Select(campo => $"@p{campo}"))})";
+                cmd.CommandText = @$"INSERT INTO {TableName} ({string.Join(",", EliminateID)}) VALUES ({string.Join(", ", EliminateID.Select(campo => $"@p{campo}"))})";
                 cmd.ExecuteNonQuery();
             }
         }
@@ -70,10 +72,12 @@ namespace Reino_Espírito_Santo.Models
         {
             using (var conn = new MySqlConnection(DBConnection.CONNECTION_STRING))
             {
+                var EliminateID = Fields;
+                EliminateID.Remove("ID");   
                 conn.Open();
 
                 var cmd = conn.CreateCommand();
-                cmd.CommandText = @$"UPDATE {TableName} SET {string.Join(", ", Fields.Select(campo => $"{campo} = @p{campo}"))}
+                cmd.CommandText = @$"UPDATE {TableName} SET {string.Join(", ", EliminateID.Select(campo => $"{campo} = @p{campo}"))}
                                    WHERE ID = @pID";
                 cmd.Parameters.Add(new MySqlParameter("ID", id));
                 FillParameters(cmd.Parameters);
