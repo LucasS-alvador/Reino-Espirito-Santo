@@ -23,7 +23,7 @@ namespace Reino_Espírito_Santo.Models.Auxiliares
         { 
             var aux = new AuxiliarModel();
 
-            aux.Id = reader.GetInt32("ID");
+            aux.ID = reader.GetInt32("ID");
             aux.Nome = reader.GetString("NOME");
             aux.Funcao = reader.GetString("FUNCAO");
             aux.Telefone = reader.GetString("TELEFONE");

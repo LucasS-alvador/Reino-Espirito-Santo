@@ -15,7 +15,7 @@ namespace Reino_Espírito_Santo.Controllers
         public IActionResult Index()
         {
             var listaDeCultos = new ListaDeCultosEAuxiliares();
-            listaDeCultos.cultos = Culto.GetAll();
+            listaDeCultos.cultos = new Culto().GetAll();
             var pastores = new List<AuxiliarModel>();
             foreach (var a in new AuxiliarModel().GetAll())
             {
@@ -42,13 +42,13 @@ namespace Reino_Espírito_Santo.Controllers
 
         [HttpPost] public IActionResult Criar(Culto culto)
         {
-            Culto.Create(culto);
+            culto.Create();
             return RedirectToAction("Index");
         }
 
         public IActionResult Deletar(int id)
         {
-            Culto.Delete(id);
+            new Culto().Delete(id);
             return RedirectToAction("Index");
         }
     }

@@ -18,16 +18,16 @@
         @foreach (var auxiliar in Model.Auxiliares)
         {
             <tr>
-                <td>@auxiliar.Id</td>
+                <td>@auxiliar.ID</td>
                 <td>@auxiliar.Nome</td>
                 <td>@auxiliar.Funcao</td>
                 <td>@auxiliar.Telefone</td>
                 <td>
-                    <a type="button" class="btn btn-warning btn-sm" asp-area="" asp-controller="Auxiliares" asp-action="Record" asp-route-id="@auxiliar.Id">Editar</a>
+                    <a type="button" class="btn btn-warning btn-sm" asp-area="" asp-controller="Auxiliares" asp-action="Record" asp-route-id="@auxiliar.ID">Editar</a>
                       
                 </td>
                 <td>
-                <a type="button" class="btn btn-sm btn-danger" asp-area="" asp-controller="Auxiliares" asp-action="Delete" asp-route-id="@auxiliar.Id">Excluir</a>
+                <a type="button" class="btn btn-sm btn-danger" asp-area="" asp-controller="Auxiliares" asp-action="Delete" asp-route-id="@auxiliar.ID">Excluir</a>
                 </td>
             </tr>
         }

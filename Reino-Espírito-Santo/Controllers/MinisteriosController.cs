@@ -65,10 +65,10 @@ namespace Reino_Espírito_Santo.Controllers
 
         public IActionResult Adicionar()
         {
-            var auxiliares = AuxiliaresController.auxiliares
+            /* var auxiliares = AuxiliaresController.auxiliares
                 .Select(a => new SelectListItem
                 {
-                    Value = a.Id.ToString(),
+                    Value = a.ID.ToString(),
                     Text = a.Nome
                 })
                 .ToList();
@@ -76,6 +76,8 @@ namespace Reino_Espírito_Santo.Controllers
             ViewBag.Auxiliares = auxiliares; // Passa os auxiliares para a view
 
             return View();
+            */
+            throw new NotImplementedException();
         }
 
         [HttpPost]
