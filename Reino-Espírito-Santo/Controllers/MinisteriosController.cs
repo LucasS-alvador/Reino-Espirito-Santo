@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Reino_Espírito_Santo.DataBase.Entidades;
+using Reino_Espírito_Santo.Models.Auxiliares;
 using Reino_Espírito_Santo.Models.Ministerios;
-using Reino_Espírito_Santo.DataBase.Entidades;
 
 namespace Reino_Espírito_Santo.Controllers
 {
@@ -10,62 +10,47 @@ namespace Reino_Espírito_Santo.Controllers
     {
         public IActionResult Index()
         {
-            var model = new MinisteriosModel();
-            model.Ministerio = new List<MinisterioModel>();
-
-            var ministerios = Ministerio.GetAll(); // Método estático para buscar todos os ministérios
-
-            // A forma mais simples de mapear os dados
-            model.Ministerio = ministerios.Select(ministerioEntidade => new MinisterioModel(ministerioEntidade)).ToList();
+            var model = new MinisteriosModel() // Ajustando a estrutura do retorno
+            { Ministerio = new MinisterioModel().GetAll()
+            };
 
             return View(model);
         }
 
         public IActionResult Record(long? id)
         {
-            var model = new MinisterioModel();
-
-            if (id.HasValue)
-            {
-                // Aqui buscamos o ministério pelo ID
-                model = new MinisterioModel(Ministerio.Get(id.Value));
-            }
-
+            var model = id.HasValue ? new MinisterioModel().Get(id.Value) : new MinisterioModel();
             return View(model);
         }
 
         [HttpPost]
         public IActionResult Record(MinisterioModel model, string type)
         {
-            Ministerio ministerio = model.getEntidade();
+            if (!ModelState.IsValid)
+                return View(model);
 
             if (type == "save")
             {
-                // Se o ID for maior que 0, significa que já existe no banco, então vamos atualizar
-                if (ministerio.Id > 0)
-                {
-                    ministerio.Update(); // Atualiza o ministério no banco de dados
-                }
+                if (model.Id > 0)
+                    model.Update(model.Id);
                 else
-                {
-                    ministerio.Create(); // Cria um novo ministério no banco de dados
-                }
+                    model.Create();
             }
             else if (type == "delete")
             {
-                ministerio.Delete(); // Exclui o ministério
+                model.Delete(model.Id);
             }
             else
             {
-                return BadRequest("Requisição inválida!"); // Retorna erro se o tipo de requisição for inválido
+                return BadRequest("Requisição inválida!");
             }
 
-            return RedirectToAction("Index"); // Redireciona para a lista de ministérios
+            return RedirectToAction("Index");
         }
 
         public IActionResult Adicionar()
         {
-            /* var auxiliares = AuxiliaresController.auxiliares
+            var auxiliares = new AuxiliarModel().GetAll()
                 .Select(a => new SelectListItem
                 {
                     Value = a.ID.ToString(),
@@ -73,26 +58,18 @@ namespace Reino_Espírito_Santo.Controllers
                 })
                 .ToList();
 
-            ViewBag.Auxiliares = auxiliares; // Passa os auxiliares para a view
-
-            return View();
-            */
-            throw new NotImplementedException();
+            ViewBag.Auxiliares = auxiliares;
+            return View(new MinisterioModel());
         }
 
         [HttpPost]
         public IActionResult Adicionar(MinisterioModel model)
         {
-            if (ModelState.IsValid)
-            {
-                var ministerio = model.getEntidade(); // Converte o modelo para a entidade do banco
+            if (!ModelState.IsValid)
+                return View(model);
 
-                ministerio.Create(); // Cria o novo ministério no banco
-
-                return RedirectToAction("Index"); // Redireciona para a lista de ministérios
-            }
-
-            return View(model); // Retorna para a view caso a validação não passe
+            model.Create();
+            return RedirectToAction("Index");
         }
     }
 }

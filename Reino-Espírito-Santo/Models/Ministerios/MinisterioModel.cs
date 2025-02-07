@@ -7,40 +7,47 @@ using Reino_Espírito_Santo.DataBase.Entidades;
 
 namespace Reino_Espírito_Santo.Models.Ministerios
 {
-    public class MinisterioModel
+    public class MinisterioModel : EntidadeBase<MinisterioModel>
     {
         public long Id { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public long auxiliarId { get; set; }
         public DateTime DataInicio { get; set; }
-
         public string AuxiliarNome { get; set; }
 
-        public MinisterioModel() { }
-
-        
-        public MinisterioModel( Ministerio ministerio)
+        public override List<string> Fields => new List<string>()
         {
-            Id = ministerio.Id;
-            Nome = ministerio.Nome;
-            Descricao = ministerio.Descricao;
-            auxiliarId = ministerio.AuxiliarId;
-            DataInicio = ministerio.DataInicio;
+            "ID",
+            "NOME",
+            "DESCRICAO",
+            "ID_AUXILIAR",
+            "DT_INICIO"
+        };
+
+        public override string TableName => "MINISTERIOS";
+
+        public override MinisterioModel Fill(MySqlDataReader reader)
+        {
+            var min = new MinisterioModel();
+
+            min.Id = reader.GetInt64("ID");
+            min.Nome = reader.GetString("NOME");
+            min.Descricao = reader.GetString("DESCRICAO");
+            min.auxiliarId = reader.GetInt64("ID_AUXILIAR");
+            min.DataInicio = reader.GetDateTime("DT_INICIO");
+
+            return min;
         }
 
-        public Ministerio getEntidade()
+        public override void FillParameters(MySqlParameterCollection parameters)
         {
-            return new Ministerio()
-            {
-                Id = Id,
-                Nome = Nome,
-                Descricao = Descricao,
-                AuxiliarId = auxiliarId
-            };
+            parameters.Add(new MySqlParameter("pNOME", Nome));
+            parameters.Add(new MySqlParameter("pDESCRICAO", Descricao));
+            parameters.Add(new MySqlParameter("pID_AUXILIAR",auxiliarId));
+            parameters.Add(new MySqlParameter("pDT_INICIO",DataInicio));
+
         }
-
-
     }
 }
 
