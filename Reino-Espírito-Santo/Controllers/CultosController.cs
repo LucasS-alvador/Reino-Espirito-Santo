@@ -51,5 +51,33 @@ namespace Reino_Espírito_Santo.Controllers
             new Culto().Delete(id);
             return RedirectToAction("Index");
         }
+
+        [HttpGet("api/v1/Cultos")]
+        public IActionResult Get()
+        {
+            var cultos = new Culto().GetAll();
+            return Ok(cultos);
+        }
+
+        [HttpPost("api/v1/Culto")]
+        public IActionResult Post(Culto culto)
+        {
+            culto.Create();
+            return Ok("Culto cadastrado!");
+        }
+
+        [HttpPut("api/v1/Culto/{id}")]
+        public IActionResult Put(long id, [FromBody] Culto culto)
+        {
+            culto.Update(id);
+            return Ok("Culto atualizado");
+        }
+        [HttpDelete("api/v1/Cultos/{id}")]
+        public IActionResult Delete(long id)
+        {
+            new Culto().Delete(id);
+
+            return Ok("Culto deletado!");
+        }
     }
 }
