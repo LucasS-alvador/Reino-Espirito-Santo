@@ -60,7 +60,35 @@ namespace Reino_Espírito_Santo.Controllers
             return RedirectToAction("Index");
         }
 
-        
+                [HttpGet("api/v1/Auxiliares")]
+        public IActionResult Get()
+        {
+            var auxiliar = new AuxiliarModel().GetAll();
+            return Ok(auxiliar);
+        }
+        [HttpPost("api/v1/Auxiliar")]
+        public IActionResult Post([FromBody] AuxiliarModel auxiliar)
+        {
+            auxiliar.Create();
+            return Ok("Auxiliar Cadastrado");
+        }
+        [HttpPut("api/v1/Auxiliar/{id}")]
+        public IActionResult Put(long id, [FromBody] AuxiliarModel auxiliar)
+        {
+
+            var auxiliarEntidade = new AuxiliarModel().Get(id);
+            auxiliarEntidade.Update(id);
+
+            return Ok("Auxiliar atualizado!");
+        }
+        [HttpDelete("api/v1/Auxiliares/{id}")]
+        public IActionResult Delete(long id) 
+        {
+            var auxiliar = new AuxiliarModel().Get(id);
+            auxiliar.Delete(id);
+
+            return Ok("Auxiliar Deletado");
+        }
     }
 }
 
