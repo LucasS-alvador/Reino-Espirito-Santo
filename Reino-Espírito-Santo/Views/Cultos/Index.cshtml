@@ -18,7 +18,7 @@
 			<td>@culto.ID</td>
 			<td>@culto.Data</td>
 			<td>@(Model.auxiliares.Any(a => a.ID == culto.PastorID)? Model.auxiliares.FirstOrDefault(a => a.ID == culto.PastorID)?.Nome : "Erro")</td>
-			<td>@("https://"+culto.Link)</td>
+			<td>@(culto.Link)</td>
 			<td>
                 <a type="button" class="btn btn-sm btn-danger" asp-area="" asp-controller="Cultos" asp-action="Deletar" asp-route-id="@culto.ID">Excluir</a>
 			</td>

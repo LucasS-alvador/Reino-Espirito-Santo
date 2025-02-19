@@ -60,7 +60,7 @@ namespace Reino_Espírito_Santo.Controllers
         }
 
         [HttpPost("api/v1/Culto")]
-        public IActionResult Post(Culto culto)
+        public IActionResult Post([FromBody] Culto culto)
         {
             culto.Create();
             return Ok("Culto cadastrado!");
