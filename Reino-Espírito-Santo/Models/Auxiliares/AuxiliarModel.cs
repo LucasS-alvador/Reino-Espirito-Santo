@@ -19,6 +19,7 @@ namespace Reino_Espírito_Santo.Models.Auxiliares
             "TELEFONE",
         };
         public override string TableName => "AUXILIARES";
+
         public override AuxiliarModel Fill(MySqlDataReader reader)
         { 
             var aux = new AuxiliarModel();

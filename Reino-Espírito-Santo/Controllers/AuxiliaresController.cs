@@ -75,8 +75,17 @@ namespace Reino_Espírito_Santo.Controllers
         [HttpPut("api/v1/Auxiliar/{id}")]
         public IActionResult Put(long id, [FromBody] AuxiliarModel auxiliar)
         {
-
             var auxiliarEntidade = new AuxiliarModel().Get(id);
+
+            if (auxiliarEntidade == null)
+            {
+                return NotFound("Auxiliar não encontrado!");
+            }
+
+            auxiliarEntidade.Nome = auxiliar.Nome;
+            auxiliarEntidade.Funcao = auxiliar.Funcao;
+            auxiliarEntidade.Telefone = auxiliar.Telefone;
+
             auxiliarEntidade.Update(id);
 
             return Ok("Auxiliar atualizado!");

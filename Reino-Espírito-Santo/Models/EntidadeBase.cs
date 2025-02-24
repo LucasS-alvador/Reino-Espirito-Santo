@@ -79,7 +79,7 @@ namespace Reino_Espírito_Santo.Models
                 var cmd = conn.CreateCommand();
                 cmd.CommandText = @$"UPDATE {TableName} SET {string.Join(", ", EliminateID.Select(campo => $"{campo} = @p{campo}"))}
                                    WHERE ID = @pID";
-                cmd.Parameters.Add(new MySqlParameter("ID", id));
+                cmd.Parameters.Add(new MySqlParameter("pID", id));
                 FillParameters(cmd.Parameters);
 
                 cmd.ExecuteNonQuery();
