@@ -18,11 +18,11 @@ html {
 }
 
 body {
-  background-color:black;
+    background-color: #ebe8e8;
 }
-td{
-    color:white
+td {
+    color: black
 }
-.importante{
-    color:orange;
+.importante {
+    color: #404467;
 }
